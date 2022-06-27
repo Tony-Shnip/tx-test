@@ -34,7 +34,8 @@ function dataTransactionsLoop (token) {
   setTimeout(() => {
     let document = new PDF;
     document.pipe(fs.createWriteStream('./pdf/test.pdf'));
-    document.text(`${Date.now()}`);
+    let text = Date.now().toString();
+    document.text(text);
     document.end();
 
     let data = fs.readFileSync(`./pdf/test.pdf`);
