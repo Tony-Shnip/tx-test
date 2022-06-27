@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Tony-Shnip/tx-test#readme",
   "dependencies": {
     "fs": "0.0.1-security",
+    "pdfkit": "^0.13.0",
     "request-promise-native": "^1.0.9",
     "temtumjs": "github:Tony-Shnip/temtumjs"
   }

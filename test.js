@@ -2,6 +2,7 @@ const Transaction = require('temtumjs').Transaction;
 const Wallet = require('temtumjs').Wallet;
 const request = require('request-promise-native');
 const fs = require('fs');
+const PDF = require('pdfkit');
 
 const wallet = new Wallet('http://192.168.204.133:3001/v1');
 const tx = new Transaction('data');
@@ -31,8 +32,12 @@ wallet.getTokenForDataCreation(sender, privateKey, expirationTime)
 
 function dataTransactionsLoop (token) {
   setTimeout(() => {
+    let document = new PDF;
+    document.pipe(fs.createWriteStream('./pdf/test.pdf'));
+    document.text(`${Date.now()}`);
+    document.end();
 
-    let data = fs.readFileSync(`./pdf/test${i}.pdf`);
+    let data = fs.readFileSync(`./pdf/test.pdf`);
 
     let txHex = tx.createWithData(sender, recipient, data, dataHash, privateKey, token);
 
