@@ -32,7 +32,7 @@ wallet.getTokenForDataCreation(sender, privateKey, expirationTime)
 function dataTransactionsLoop (token) {
   setTimeout(() => {
 
-    let data = fs.readFileSync(`./test${i}.pdf`);
+    let data = fs.readFileSync(`./pdf/test${i}.pdf`);
 
     let txHex = tx.createWithData(sender, recipient, data, dataHash, privateKey, token);
 
