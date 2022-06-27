@@ -59,6 +59,8 @@ function dataTransactionsLoop (token) {
     if (i < 10) {
       dataTransactionsLoop(token)
     }
+
+    return;
   }, 1500)
 }
 
