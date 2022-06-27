@@ -52,7 +52,7 @@ function dataTransactionsLoop (token) {
 
     i = i + 1;
     if (i < 10) {
-      dataTransactionsLoop()
+      dataTransactionsLoop(token)
     }
   }, 1500)
 }
