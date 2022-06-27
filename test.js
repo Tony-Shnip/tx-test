@@ -4,6 +4,13 @@ const request = require('request-promise-native');
 const fs = require('fs');
 const PDF = require('pdfkit');
 
+let document = new PDF();
+
+document.pipe(fs.createWriteStream(`./pdf/test0.pdf`));
+let text = Date.now().toString();
+document.text(text);
+document.end();
+
 const wallet = new Wallet('http://192.168.204.133:3001/v1');
 const tx = new Transaction('data');
 
@@ -32,13 +39,18 @@ wallet.getTokenForDataCreation(sender, privateKey, expirationTime)
 
 function dataTransactionsLoop (token) {
   setTimeout(() => {
-    let document = new PDF;
-    document.pipe(fs.createWriteStream('./pdf/test.pdf'));
-    let text = Date.now().toString();
-    document.text(text);
-    document.end();
+    if (i < 9) {
+      let document = new PDF();
 
-    let data = fs.readFileSync(`./pdf/test.pdf`);
+      document.pipe(fs.createWriteStream(`./pdf/test${i + 1}.pdf`));
+      let text = Date.now().toString();
+      document.text(text);
+      document.end();
+    }
+
+    let data = fs.readFileSync(`./pdf/test${i}.pdf`);
+
+    console.log(data);
 
     let txHex = tx.createWithData(sender, recipient, data, dataHash, privateKey, token);
 
